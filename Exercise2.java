@@ -9,9 +9,10 @@ public class Exercise2 {
          *  c) the first character in UPPERCASE, e.g. if the string is "hello", it prints "H"
          */
 
-        String toCheck = "intelliJ";
+        String toCheck = "Feierabendbier";
         // System.out.println(toCheck.charAt(0));
         System.out.println(findFirstCharacter(toCheck));
+        System.out.println(findLastCharacter(toCheck));
     }
     //the first character of the string, e.g. if the string is "hello", it prints "h"
     public static char findFirstCharacter(String one) {
@@ -19,7 +20,11 @@ public class Exercise2 {
         return one.charAt(0);
     }
 
-    // the last letter of a string, e.g. if the string is "hello", it prints "o"
 
+    // the last letter of a string, e.g. if the string is "hello", it prints "o"
+    public static char findLastCharacter(String one) {
+        int numberOfLetters = one.length();
+        return one.charAt(numberOfLetters -1);
+    }
 
 }

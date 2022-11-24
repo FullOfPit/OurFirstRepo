@@ -1,6 +1,6 @@
 public class Exercise3 {
     public static void main(String[] args) {
-        /**
+        /*
          * The following program should print
          *    Alvin Chipmunk (12)
          *

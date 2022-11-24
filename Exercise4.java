@@ -15,7 +15,11 @@ public class Exercise4 {
 
         System.out.println("Please enter a word:");
         String word = scanner.next();
+        System.out.println(isValid(word));
 
+
+
+        /*
         if (!isValid(word)) {
             System.out.println("Valid");
         } else {
@@ -24,6 +28,21 @@ public class Exercise4 {
     }
 
     public static boolean isValid(String str) {
+
         return str.toLowerCase().startsWith("a") && str.length() > 5;
+    }
+
+        */
+
+    }
+
+    public static String isValid(String str) {
+        /*
+        if (str.substring(0,1).equalsIgnoreCase("A") && str.length() > 5) {
+            return "Valid";
+            }
+        return "Ain't Valid";
+         */
+        return str.substring(0, 1).equalsIgnoreCase("A") && str.length() > 5 ? "Valid" : "Ain't Valid";
     }
 }

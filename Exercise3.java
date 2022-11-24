@@ -19,10 +19,26 @@ public class Exercise3 {
     }
 
     public static String getInfo(String firstName, String lastName, int age) {
+        return getFullname(firstName, lastName) + " (" + age + ")";
+    }
+    //Swapped parameters passed to getFullname()
+    public static String getFullname(String firstName, String lastName) {
+        return firstName + " " + lastName;
+    }
+    //Added space to return statement
+
+
+    /*
+                                    -- OLD --
+
+
+    public static String getInfo(String firstName, String lastName, int age) {
         return getFullname(lastName, firstName) + " (" + age + ")";
     }
 
     public static String getFullname(String firstName, String lastName) {
         return firstName + lastName;
     }
+
+     */
 }

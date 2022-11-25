@@ -1,4 +1,4 @@
-
+package de.neuefische;
 
 public class Exercise5 {
 

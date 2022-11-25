@@ -1,3 +1,5 @@
+package de.neuefische;
+
 import java.util.Scanner;
 
 public class Exercise4 {

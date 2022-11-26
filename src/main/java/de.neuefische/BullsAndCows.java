@@ -1,5 +1,7 @@
 package de.neuefische;
 
+import java.util.Scanner;
+
 /*
  * ------------------------------------------------------------------------------
  * BULLS AND COWS (aka Mastermind)
@@ -14,14 +16,14 @@ package de.neuefische;
  * ------------------------------------------------------------------------------
  *
  * Tasks:
- *      [ ] set a secret code
- *      [ ] let the user enter a guess
- *      [ ] compare the guess with the secret code (rules see above)
- *      [ ] output the result in the format "%d bull(s) and %d cow(s)."
- *      [ ] if the user guessed the secret code correct:
+ *      [x] set a secret code
+ *      [x] let the user enter a guess
+ *      [x] compare the guess with the secret code (rules see above)
+ *      [x] output the result in the format "%d bull(s) and %d cow(s)."
+ *      [x] if the user guessed the secret code correct:
  *          - output "You found the secret code. Congratulations!"
  *          - the game then stops
- *      [ ] if the user does not guess the secret code:
+ *      [x] if the user does not guess the secret code:
  *          - ask for the next guess
  *
  * ------------------------------------------------------------------------------
@@ -32,7 +34,49 @@ package de.neuefische;
  *      [ ] validate the user input (the rules are the same as for the secret code generation)
  */
 public class BullsAndCows {
-    public static void main(String[] args) {
 
+    private static final String SUCCESS_MSG = "You found the secret code. Congratulations!";
+    private static final String RESULT_MSG_PATTERN = "%d bull(s) and %d cow(s).";
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String secretCode = "4271";
+        System.out.println("The secret code is generated: ****");
+
+        String result;
+        do {
+            System.out.print("Please enter your guess: ");
+            String guess = scanner.nextLine();
+
+            result = compare(secretCode, guess);
+
+            System.out.println(result);
+            System.out.println();
+
+        } while (!SUCCESS_MSG.equals(result));
     }
+
+    public static String compare(String secretCode, String guess) {
+        if (secretCode.equals(guess)) {
+            return SUCCESS_MSG;
+        }
+
+        int bulls = 0;
+        int cows = 0;
+
+        for (int i = 0; i < secretCode.length(); i++) {
+            char digitInSecretCode = secretCode.charAt(i);
+            char digitInGuess = guess.charAt(i);
+
+            if (digitInSecretCode == digitInGuess) {
+                bulls++;
+            } else if (secretCode.contains(String.valueOf(digitInGuess))) {
+                cows++;
+            }
+        }
+
+        return String.format(RESULT_MSG_PATTERN, bulls, cows);
+    }
+
 }

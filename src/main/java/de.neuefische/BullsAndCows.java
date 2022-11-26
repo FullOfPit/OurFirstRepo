@@ -31,7 +31,7 @@ import java.util.Scanner;
  * ------------------------------------------------------------------------------
  *
  * Bonus:
- *      [ ] randomly generate the secret code (consists of 4 digits from 0-9, the digits must be all different)
+ *      [x] randomly generate the secret code (consists of 4 digits from 0-9, the digits must be all different)
  *      [ ] implement a maximum number of turns the user has to guess the secret code
  *      [ ] validate the user input (the rules are the same as for the secret code generation)
  */

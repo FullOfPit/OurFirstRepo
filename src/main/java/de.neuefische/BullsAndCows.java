@@ -1,6 +1,5 @@
 package de.neuefische;
 
-import javax.management.relation.RelationNotFoundException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -32,13 +31,16 @@ import java.util.Scanner;
  *
  * Bonus:
  *      [x] randomly generate the secret code (consists of 4 digits from 0-9, the digits must be all different)
- *      [ ] implement a maximum number of turns the user has to guess the secret code
+ *      [x] implement a maximum number of turns the user has to guess the secret code
  *      [ ] validate the user input (the rules are the same as for the secret code generation)
  */
 public class BullsAndCows {
 
     private static final String SUCCESS_MSG = "You found the secret code. Congratulations!";
+    private static final String LOSE_MSG = "No more turns. You lose!";
     private static final String RESULT_MSG_PATTERN = "%d bull(s) and %d cow(s).";
+
+    private static final int MAX_TURNS = 10;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -50,8 +52,11 @@ public class BullsAndCows {
         System.out.printf("The secret code is generated: %s\n", showSecretCode ? secretCode : "****");
 
         String result;
+        int turn = 0;
         do {
-            System.out.print("Please enter your guess: ");
+            turn++;
+
+            System.out.printf("Turn %d\nPlease enter your guess: \n", turn);
             String guess = scanner.nextLine();
 
             result = compare(secretCode, guess);
@@ -59,7 +64,11 @@ public class BullsAndCows {
             System.out.println(result);
             System.out.println();
 
-        } while (!SUCCESS_MSG.equals(result));
+        } while (!SUCCESS_MSG.equals(result) && turn < MAX_TURNS);
+
+        if (turn >= MAX_TURNS) {
+            System.out.println(LOSE_MSG);
+        }
     }
 
     public static String compare(String secretCode, String guess) {

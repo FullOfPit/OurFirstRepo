@@ -1,5 +1,6 @@
 package de.neuefische;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -26,6 +27,14 @@ class BullsAndCowsTest {
     void compare(String secretCode, String guess, String expectedMsg) {
         String actualMsg = BullsAndCows.compare(secretCode, guess);
 
-        assertEquals(expectedMsg, actualMsg);
+        assertEquals(expectedMsg, actualMsg, "Result message is not as expected.");
+    }
+
+    @Test
+    void generateSecretCode() {
+        String firstSecretCode = BullsAndCows.generateSecretCode();
+        String secondSecretCode = BullsAndCows.generateSecretCode();
+
+        assertNotEquals(firstSecretCode, secondSecretCode, "Should generate a random secret code.");
     }
 }

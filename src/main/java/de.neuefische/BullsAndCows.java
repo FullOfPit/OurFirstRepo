@@ -1,5 +1,7 @@
 package de.neuefische;
 
+import javax.management.relation.RelationNotFoundException;
+import java.util.Random;
 import java.util.Scanner;
 
 /*
@@ -41,8 +43,11 @@ public class BullsAndCows {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        String secretCode = "4271";
-        System.out.println("The secret code is generated: ****");
+        System.out.print("Would you like to see the secret code for testing purposes? [y/n] ");
+        boolean showSecretCode = "y".equals(scanner.nextLine());
+
+        String secretCode = generateSecretCode();
+        System.out.printf("The secret code is generated: %s\n", showSecretCode ? secretCode : "****");
 
         String result;
         do {
@@ -77,6 +82,25 @@ public class BullsAndCows {
         }
 
         return String.format(RESULT_MSG_PATTERN, bulls, cows);
+    }
+
+    public static String generateSecretCode() {
+        StringBuilder secretCode = new StringBuilder();
+        Random randomizer = new Random();
+
+        for (int i = 0; i < 4; i++) {
+            int randomDigit;
+            boolean isAlreadyUsed;
+
+            do {
+                randomDigit = randomizer.nextInt(10);
+                isAlreadyUsed = secretCode.toString().contains(String.valueOf(randomDigit));
+            } while (isAlreadyUsed);
+
+            secretCode.append(randomDigit);
+        }
+
+        return secretCode.toString();
     }
 
 }
